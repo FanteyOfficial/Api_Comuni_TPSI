@@ -51,19 +51,27 @@
     
     // Add postal code of a municipality
     if ($method == "POST") {
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (is_array($data) && isset($data["cap"]) && isset($data["comune"])) {
-            $postalCode = (int)$data["cap"];
-            $municipalityName = mysqli_real_escape_string($conn, $data["comune"]);
+        $urlParts = explode('/', $_SERVER['REQUEST_URI']);
+        $lastPart = end($urlParts);
     
-            $sql = "INSERT INTO codicipostali (cap, comune) VALUES ($postalCode, '$municipalityName')";
-            if ($conn->query($sql) === TRUE) {
-                echo json_encode(array("message" => "Municipality added successfully"));
+        if ($lastPart == 'add') {
+            // If the last part is 'add', add a new record
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (is_array($data) && isset($data["cap"]) && isset($data["comune"])) {
+                $cap = mysqli_real_escape_string($conn, $data["cap"]);
+                $comune = mysqli_real_escape_string($conn, $data["comune"]);
+    
+                $sql = "INSERT INTO codicipostali (cap, comune) VALUES ('$cap', '$comune')";
+                if ($conn->query($sql) === TRUE) {
+                    echo json_encode(array("message" => "Municipality added successfully"));
+                } else {
+                    echo json_encode(array("message" => "Error adding municipality: " . $conn->error));
+                }
             } else {
-                echo json_encode(array("message" => "Error adding municipality: " . $conn->error));
+                echo json_encode(array("message" => "Invalid data"));
             }
         } else {
-            echo json_encode(array("message" => "Invalid data"));
+            echo json_encode(array("message" => "Invalid URL"));
         }
     }
 
