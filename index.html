@@ -32,11 +32,20 @@
         </style>
     </head>
     <body>
+        <form action="" method="post">
+            <input type="text" name="comune" id="comune" placeholder="Comune" />
+            <input type="text" name="cap" id="cap" placeholder="CAP" />
+            <input type="submit" value="Aggiungi" onclick="addComune();" />
+        </form>
+
         <div class=".cont-data">
             <ul id="cont-data"></ul>
         </div>
+        
         <script>
             getComuni();
         </script>
+
+        
     </body>
 </html>

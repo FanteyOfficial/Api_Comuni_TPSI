@@ -18,3 +18,25 @@ function getComuni(obj="") {
 
     xhr.send();
 }
+
+function addComune() {
+    const comune = document.getElementById("comune").value;
+    const cap = document.getElementById("cap").value;
+
+    xhr = new XMLHttpRequest();
+    xhr.open('POST', 'server/api.php');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(`comune=${encodeURIComponent(comune)}&cap=${encodeURIComponent(cap)}`);
+
+    xhr.onload = function() {
+        if (xhr.status !== 200) {
+            console.error('Error while fetching messages');
+            return;
+        }
+
+        const response = JSON.parse(xhr.response);
+        if (response.message == 'Municipality added successfully') {
+            getComuni();
+        }
+    };
+}
