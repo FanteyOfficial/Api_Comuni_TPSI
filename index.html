@@ -1,0 +1,42 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Codici Postali | HOME</title>
+        <script src="script.js"></script>
+
+        <style>
+            /* Style for the container */
+            .cont-data {
+                margin: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            /* Style for the list */
+            #cont-data {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            /* Style for list items */
+            #cont-data li {
+                margin-bottom: 5px;
+                padding: 5px 10px;
+                background-color: #f0f0f0;
+                border-radius: 3px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class=".cont-data">
+            <ul id="cont-data"></ul>
+        </div>
+        <script>
+            getComuni();
+        </script>
+    </body>
+</html>

@@ -2,7 +2,7 @@
 RewriteEngine on
 
 # Redireziona tutte le richieste a index.php
-RewriteRule ^(.*)$ index.php [QSA]
+RewriteRule ^(.*)$ api.php [QSA]
 
 #Changing: RewriteRule ^ /%1 [NC,L,R]
 
