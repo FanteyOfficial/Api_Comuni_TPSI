@@ -36,6 +36,13 @@
             <input type="text" name="comune" id="comune" placeholder="Comune" />
             <input type="text" name="cap" id="cap" placeholder="CAP" />
             <input type="submit" value="Aggiungi" onclick="addComune();" />
+            <input type="submit" value="elimina" onclick="deleteComune();" />
+        </form>
+
+        <form action="" method="post">
+            <input type="text" name="comune" id="modComune" placeholder="Nuovo nome" />
+            
+            <input type="submit" value="Modifica" onclick="updateComune();" />
         </form>
 
         <div class=".cont-data">

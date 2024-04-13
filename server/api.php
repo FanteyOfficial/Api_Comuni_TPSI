@@ -45,7 +45,7 @@
             }
             echo json_encode($rows);
         } else {
-            echo json_encode(array("message" => "No results found"));
+            echo json_encode(array("code" => 404, "message" => "No results found"));
         }
     }
     
@@ -63,15 +63,15 @@
     
                 $sql = "INSERT INTO codicipostali (cap, comune) VALUES ('$cap', '$comune')";
                 if ($conn->query($sql) === TRUE) {
-                    echo json_encode(array("message" => "Municipality added successfully"));
+                    echo json_encode(array("code" => 200, "message" => "Municipality added successfully"));
                 } else {
-                    echo json_encode(array("message" => "Error adding municipality: " . $conn->error));
+                    echo json_encode(array("code" => 500, "message" => "Error adding municipality: " . $conn->error));
                 }
             } else {
-                echo json_encode(array("message" => "Invalid data"));
+                echo json_encode(array("code" => 400, "message" => "Invalid data"));
             }
         } else {
-            echo json_encode(array("message" => "Invalid URL"));
+            echo json_encode(array("code" => 400, "message" => "Invalid URL"));
         }
     }
 
@@ -88,15 +88,15 @@
     
                 $sql = "UPDATE codicipostali SET comune='$municipalityName' WHERE cap=$lastPart";
                 if ($conn->query($sql) === TRUE) {
-                    echo json_encode(array("message" => "Municipality updated successfully"));
+                    echo json_encode(array("code" => 200, "message" => "Municipality updated successfully"));
                 } else {
-                    echo json_encode(array("message" => "Error updating municipality: " . $conn->error));
+                    echo json_encode(array("code" => 500, "message" => "Error updating municipality: " . $conn->error));
                 }
             } else {
-                echo json_encode(array("message" => "Invalid data"));
+                echo json_encode(array("code" => 400, "message" => "Invalid data"));
             }
         } else {
-            echo json_encode(array("message" => "Invalid cap"));
+            echo json_encode(array("code" => 400, "message" => "Invalid cap"));
         }
     }
 
@@ -109,12 +109,12 @@
             // If the last part is numeric, assume it's a cap
             $sql = "DELETE FROM codicipostali WHERE cap=$lastPart";
             if ($conn->query($sql) === TRUE) {
-                echo json_encode(array("message" => "Municipality deleted successfully"));
+                echo json_encode(array("code" => 200, "message" => "Municipality deleted successfully"));
             } else {
-                echo json_encode(array("message" => "Error deleting municipality: " . $conn->error));
+                echo json_encode(array("code" => 500, "message" => "Error deleting municipality: " . $conn->error));
             }
         } else {
-            echo json_encode(array("message" => "Invalid cap"));
+            echo json_encode(array("code" => 400, "message" => "Invalid cap"));
         }
     }
 
