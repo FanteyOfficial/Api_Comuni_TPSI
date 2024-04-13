@@ -28,7 +28,6 @@
                 background-color: #f0f0f0;
                 border-radius: 3px;
             }
-
         </style>
     </head>
     <body>
@@ -52,7 +51,5 @@
         <script>
             getComuni();
         </script>
-
-        
     </body>
 </html>
