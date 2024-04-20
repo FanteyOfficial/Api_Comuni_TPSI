@@ -46,6 +46,7 @@
             echo json_encode($rows);
         } else {
             echo json_encode(array("code" => 404, "message" => "No results found"));
+            http_response_code(404);
         }
     }
     
@@ -64,14 +65,18 @@
                 $sql = "INSERT INTO codicipostali (cap, comune) VALUES ('$cap', '$comune')";
                 if ($conn->query($sql) === TRUE) {
                     echo json_encode(array("code" => 200, "message" => "Municipality added successfully"));
+                    http_response_code(200);
                 } else {
                     echo json_encode(array("code" => 500, "message" => "Error adding municipality: " . $conn->error));
+                    http_response_code(500);
                 }
             } else {
                 echo json_encode(array("code" => 400, "message" => "Invalid data"));
+                http_response_code(400);
             }
         } else {
             echo json_encode(array("code" => 400, "message" => "Invalid URL"));
+            http_response_code(400);
         }
     }
 
@@ -89,14 +94,18 @@
                 $sql = "UPDATE codicipostali SET comune='$municipalityName' WHERE cap=$lastPart";
                 if ($conn->query($sql) === TRUE) {
                     echo json_encode(array("code" => 200, "message" => "Municipality updated successfully"));
+                    http_response_code(200);
                 } else {
                     echo json_encode(array("code" => 500, "message" => "Error updating municipality: " . $conn->error));
+                    http_response_code(500);
                 }
             } else {
                 echo json_encode(array("code" => 400, "message" => "Invalid data"));
+                http_response_code(400);
             }
         } else {
             echo json_encode(array("code" => 400, "message" => "Invalid cap"));
+            http_response_code(400);
         }
     }
 
@@ -110,11 +119,14 @@
             $sql = "DELETE FROM codicipostali WHERE cap=$lastPart";
             if ($conn->query($sql) === TRUE) {
                 echo json_encode(array("code" => 200, "message" => "Municipality deleted successfully"));
+                http_response_code(200);
             } else {
                 echo json_encode(array("code" => 500, "message" => "Error deleting municipality: " . $conn->error));
+                http_response_code(500);
             }
         } else {
             echo json_encode(array("code" => 400, "message" => "Invalid cap"));
+            http_response_code(400);
         }
     }
 
